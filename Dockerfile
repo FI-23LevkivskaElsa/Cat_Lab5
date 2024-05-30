@@ -7,4 +7,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD ["python", "Calculator.py"]
+CMD ["python", "TestCalculator.py"]
