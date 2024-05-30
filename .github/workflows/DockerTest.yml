@@ -1,0 +1,21 @@
+name: Run Test In Docker Container
+
+on: 
+  push: 
+    branches: 
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout rep
+        uses: actions/checkout@v2
+      - name: Login to DockerHub Registry
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_LOGIN }}" --password-stdin
+      - name: docker build
+        run: docker build -t levkivskaelsa/lab5 .
+      - name: push image docker 
+        run: docker push levkivskaelsa/lab5
+      - name: run test in docker container
+        run: docker run levkivskaelsa/lab5
